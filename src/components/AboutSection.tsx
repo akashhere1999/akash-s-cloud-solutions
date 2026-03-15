@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
-import { GraduationCap, Building2, Calendar } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { GraduationCap, Building2, Calendar, ChevronRight, Shield, Server, Code2, Users, Database } from "lucide-react";
 
 const skills = [
   { category: "Cloud Platforms", items: ["AWS", "Azure"] },
@@ -15,11 +16,60 @@ const experience = [
     role: "Assistant Manager",
     company: "Deloitte",
     period: "Aug 2025 – Present",
+    details: [
+      {
+        title: "Security Architecture & Compliance",
+        description: "Architected enterprise-grade Azure solutions tailored for application teams, ensuring strict adherence to ISO 27001 and NIST frameworks to achieve \"Audit-Ready\" status prior to production launch.",
+        icon: Shield,
+      },
+      {
+        title: "Automated Incident Response",
+        description: "Engineered a seamless security orchestration pipeline by deploying Microsoft Defender for Cloud (MDC) and Azure Sentinel, utilizing Logic Apps to automate ticket creation in ServiceNow for real-time alert remediation.",
+        icon: Server,
+      },
+      {
+        title: "SOC Optimization",
+        description: "Developed custom KQL analytics rules and interactive dashboards within Sentinel to enhance visibility and streamline threat detection for complex cloud environments.",
+        icon: Code2,
+      },
+      {
+        title: "Governance & Gap Analysis",
+        description: "Conducted comprehensive security audits on existing applications and platforms, identifying architectural vulnerabilities and redesigning infrastructure to eliminate compliance gaps and improve overall system reliability.",
+        icon: Shield,
+      },
+    ],
   },
   {
     role: "Sr Cloud Engineer",
     company: "Sapphire Infotech Ventures",
     period: "Oct 2021 – Jul 2025",
+    details: [
+      {
+        title: "Disaster Recovery Leadership",
+        description: "Spearheaded multiple production-level failover and failback operations, consistently meeting aggressive RPO and RTO targets to ensure business continuity for mission-critical workloads.",
+        icon: Server,
+      },
+      {
+        title: "Large-Scale Migration",
+        description: "Executed complex \"lift-and-shift\" migrations from on-premises data centers to AWS using the AWS Application Migration Service (MGN), minimizing downtime and technical debt.",
+        icon: Code2,
+      },
+      {
+        title: "Infrastructure as Code (IaC)",
+        description: "Automated the deployment of global cloud infrastructure from the ground up using Terraform, integrating CI/CD workflows via GitHub for version-controlled, repeatable environments.",
+        icon: Code2,
+      },
+      {
+        title: "Identity & Access Management",
+        description: "Enhanced enterprise security by implementing Okta SSO integration across a multi-account AWS Organization, streamlining user access and centralized identity governance.",
+        icon: Users,
+      },
+      {
+        title: "Database Resiliency",
+        description: "Orchestrated cross-region and cross-account disaster recovery strategies for Amazon RDS using AWS Database Migration Service (DMS) to ensure data integrity and high availability.",
+        icon: Database,
+      },
+    ],
   },
 ];
 
@@ -33,6 +83,8 @@ const fadeUp = {
 };
 
 const AboutSection = () => {
+  const [activeExp, setActiveExp] = useState<number | null>(null);
+
   return (
     <section id="about" className="py-24">
       <div className="container mx-auto px-6">
@@ -88,20 +140,78 @@ const AboutSection = () => {
                   viewport={{ once: true }}
                   variants={fadeUp}
                   custom={i + 1}
-                  className="glass-card rounded-xl p-6 mb-4"
+                  className="mb-4"
                 >
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <p className="font-semibold text-foreground">{exp.role}</p>
-                      <p className="text-muted-foreground text-sm">
-                        {exp.company}
-                      </p>
+                  <button
+                    onClick={() => setActiveExp(activeExp === i ? null : i)}
+                    className={`w-full glass-card rounded-xl p-6 text-left transition-all duration-300 group cursor-pointer ${
+                      activeExp === i
+                        ? "glow-border ring-1 ring-primary/30"
+                        : "hover:border-primary/30"
+                    }`}
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-center gap-3">
+                        <motion.div
+                          animate={{ rotate: activeExp === i ? 90 : 0 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <ChevronRight className="h-4 w-4 text-primary" />
+                        </motion.div>
+                        <div>
+                          <p className="font-semibold text-foreground">{exp.role}</p>
+                          <p className="text-muted-foreground text-sm">
+                            {exp.company}
+                          </p>
+                        </div>
+                      </div>
+                      <span className="text-xs font-mono text-primary flex items-center gap-1">
+                        <Calendar className="h-3 w-3" />
+                        {exp.period}
+                      </span>
                     </div>
-                    <span className="text-xs font-mono text-primary flex items-center gap-1">
-                      <Calendar className="h-3 w-3" />
-                      {exp.period}
-                    </span>
-                  </div>
+                  </button>
+
+                  <AnimatePresence>
+                    {activeExp === i && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pt-3 pl-4 space-y-3">
+                          {exp.details.map((detail, j) => {
+                            const Icon = detail.icon;
+                            return (
+                              <motion.div
+                                key={detail.title}
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: j * 0.08, duration: 0.4 }}
+                                className="glass-card rounded-lg p-4 border-l-2 border-primary/40 hover:border-primary transition-colors duration-300 group/item"
+                              >
+                                <div className="flex items-start gap-3">
+                                  <div className="mt-0.5 p-1.5 rounded-md bg-primary/10 text-primary group-hover/item:bg-primary/20 transition-colors duration-300">
+                                    <Icon className="h-3.5 w-3.5" />
+                                  </div>
+                                  <div>
+                                    <p className="text-sm font-semibold text-foreground mb-1">
+                                      {detail.title}
+                                    </p>
+                                    <p className="text-xs text-muted-foreground leading-relaxed">
+                                      {detail.description}
+                                    </p>
+                                  </div>
+                                </div>
+                              </motion.div>
+                            );
+                          })}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </motion.div>
               ))}
             </div>
