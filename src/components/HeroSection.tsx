@@ -108,10 +108,7 @@ const HeroSection = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.65 }}
               className="text-muted-foreground text-base md:text-lg max-w-xl mb-10 leading-relaxed">
-
-
-
-
+              From initial architecture and IaC-led deployments to large-scale migrations and disaster recovery, I build resilient cloud ecosystems. Expert in AWS and Azure, ensuring every workload is secure, automated, and ready for the next chapter
             </motion.p>
 
             {/* CTA buttons */}
