@@ -121,10 +121,20 @@ const AboutSection = () => {
                 <GraduationCap className="h-5 w-5 text-primary" />
                 <h3 className="text-lg font-semibold">Education</h3>
               </div>
-              <p className="text-foreground font-medium">BSc IT</p>
-              <p className="text-muted-foreground text-sm">
-                Jai Hind College, Mumbai University
-              </p>
+              <div className="space-y-4">
+                <div>
+                  <p className="text-foreground font-medium">BSc IT</p>
+                  <p className="text-muted-foreground text-sm">Jai Hind College, Mumbai University</p>
+                </div>
+                <div className="border-t border-border/50 pt-3">
+                  <p className="text-foreground font-medium">HSC</p>
+                  <p className="text-muted-foreground text-sm">Elphinstone College, Fort</p>
+                </div>
+                <div className="border-t border-border/50 pt-3">
+                  <p className="text-foreground font-medium">SSC</p>
+                  <p className="text-muted-foreground text-sm">OLCG High School, Sion</p>
+                </div>
+              </div>
             </motion.div>
 
             <div>
