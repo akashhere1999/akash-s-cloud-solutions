@@ -156,10 +156,11 @@ const ContactSection = () => {
             <Button
               type="submit"
               size="lg"
+              disabled={loading}
               className="w-full bg-primary text-primary-foreground hover:bg-primary/90 glow-border"
             >
-              <Send className="mr-2 h-4 w-4" />
-              Send Message
+              {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}
+              {loading ? "Sending..." : "Send Message"}
             </Button>
           </motion.form>
         </div>
