@@ -5,9 +5,10 @@ import profilePhoto from "@/assets/profile-photo.jpg";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const stats = [
-{ value: "4+", label: "Years Experience" },
-{ value: "50+", label: "Projects Delivered" },
-{ value: "AWS", label: "& Azure Expert" }];
+  { value: "4+", label: "Years Experience" },
+  { value: "50+", label: "Projects" },
+  { value: "AWS Azure", label: "Terraform, Docker, ServiceNow" }
+];
 
 
 const orbitIcons = [
@@ -107,10 +108,7 @@ const HeroSection = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.65 }}
               className="text-muted-foreground text-base md:text-lg max-w-xl mb-10 leading-relaxed">
-
-
-
-
+              From initial architecture and IaC-led deployments to large-scale migrations and disaster recovery, I build resilient cloud ecosystems. Expert in AWS and Azure, ensuring every workload is secure, automated, and ready for the next chapter
             </motion.p>
 
             {/* CTA buttons */}
