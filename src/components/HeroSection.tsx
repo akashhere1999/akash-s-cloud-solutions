@@ -5,9 +5,10 @@ import profilePhoto from "@/assets/profile-photo.jpg";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const stats = [
-{ value: "4+", label: "Years Experience" },
-{ value: "50+", label: "Projects Delivered" },
-{ value: "AWS", label: "& Azure Expert" }];
+  { value: "4+", label: "Years Experience" },
+  { value: "50+", label: "Projects" },
+  { value: "AWS Azure", label: "Terraform, Docker, ServiceNow" }
+];
 
 
 const orbitIcons = [
