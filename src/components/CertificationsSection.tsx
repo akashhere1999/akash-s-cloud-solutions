@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
-import { Award, ExternalLink, ShieldCheck, Calendar } from "lucide-react";
+import { useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ExternalLink, ShieldCheck, Calendar } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 const certifications = [
@@ -112,81 +113,102 @@ const issuerColor: Record<string, string> = {
   Wiz: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
 };
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.06, duration: 0.5 },
-  }),
+const TiltCard = ({
+  cert,
+  i,
+}: {
+  cert: (typeof certifications)[0];
+  i: number;
+}) => {
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -20;
+    setTilt({ x: y, y: x });
+  };
+
+  const handleMouseLeave = () => setTilt({ x: 0, y: 0 });
+
+  return (
+    <motion.a
+      href={cert.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay: i * 0.05, duration: 0.5 }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="glass-card rounded-xl p-5 group hover:border-primary/40 transition-all duration-300 flex flex-col justify-between"
+      style={{
+        transform: `perspective(800px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
+        transition: "transform 0.15s ease-out",
+      }}
+    >
+      <div>
+        <div className="flex items-start justify-between mb-3">
+          <span
+            className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${
+              issuerColor[cert.issuer] ?? "bg-secondary text-secondary-foreground border-border"
+            }`}
+          >
+            {cert.issuer}
+          </span>
+          <ExternalLink className="h-3.5 w-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+        </div>
+        <div className="flex items-start gap-2 mb-3">
+          <ShieldCheck className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+          <h3 className="text-sm font-semibold text-foreground leading-tight">{cert.name}</h3>
+        </div>
+      </div>
+      <div className="flex items-center justify-between mt-2">
+        <span className="text-[11px] text-muted-foreground font-mono flex items-center gap-1">
+          <Calendar className="h-3 w-3" />
+          {cert.issued}
+        </span>
+        {!cert.active && (
+          <Badge
+            variant="outline"
+            className="text-[10px] px-1.5 py-0 border-muted-foreground/30 text-muted-foreground"
+          >
+            Expired
+          </Badge>
+        )}
+      </div>
+    </motion.a>
+  );
 };
 
 const CertificationsSection = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+  const headingScale = useTransform(scrollYProgress, [0, 0.3], [0.9, 1]);
+  const headingOpacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
+
   return (
-    <section id="certifications" className="py-24">
+    <section id="certifications" className="py-24 relative" ref={containerRef}>
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background to-transparent pointer-events-none" />
       <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
+        <motion.div style={{ scale: headingScale, opacity: headingOpacity }} className="mb-16">
           <p className="section-label mb-3">05 — Credentials</p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Professional{" "}
-            <span className="text-gradient">Certifications</span>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">
+            Professional <span className="text-gradient">Certifications</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl leading-relaxed">
-            Industry-recognized certifications across AWS, Azure, Google Cloud,
-            and more — validating deep expertise in cloud architecture, security,
-            and AI.
+            Industry-recognized certifications across AWS, Azure, Google Cloud, and more — validating
+            deep expertise in cloud architecture, security, and AI.
           </p>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {certifications.map((cert, i) => (
-            <motion.a
-              key={cert.name}
-              href={cert.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              custom={i}
-              className="glass-card rounded-xl p-5 group hover:border-primary/40 transition-all duration-300 flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-start justify-between mb-3">
-                  <span
-                    className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${
-                      issuerColor[cert.issuer] ?? "bg-secondary text-secondary-foreground border-border"
-                    }`}
-                  >
-                    {cert.issuer}
-                  </span>
-                  <ExternalLink className="h-3.5 w-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-                <div className="flex items-start gap-2 mb-3">
-                  <ShieldCheck className="h-4 w-4 text-primary mt-0.5 shrink-0" />
-                  <h3 className="text-sm font-semibold text-foreground leading-tight">
-                    {cert.name}
-                  </h3>
-                </div>
-              </div>
-              <div className="flex items-center justify-between mt-2">
-                <span className="text-[11px] text-muted-foreground font-mono flex items-center gap-1">
-                  <Calendar className="h-3 w-3" />
-                  {cert.issued}
-                </span>
-                {!cert.active && (
-                  <Badge variant="outline" className="text-[10px] px-1.5 py-0 border-muted-foreground/30 text-muted-foreground">
-                    Expired
-                  </Badge>
-                )}
-              </div>
-            </motion.a>
+            <TiltCard key={cert.name} cert={cert} i={i} />
           ))}
         </div>
       </div>

@@ -1,5 +1,7 @@
-import { motion } from "framer-motion";
-import { ExternalLink, Database, RefreshCcw } from "lucide-react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Database, RefreshCcw } from "lucide-react";
+import { useCountUp } from "@/hooks/useCountUp";
 
 const projects = [
   {
@@ -26,18 +28,32 @@ const projects = [
   },
 ];
 
-const ProjectsSection = () => {
+const CountUpMetric = ({ value, label }: { value: string; label: string }) => {
+  const { ref, display } = useCountUp(value);
   return (
-    <section id="projects" className="py-24">
+    <div className="text-center">
+      <p ref={ref} className="text-2xl font-bold text-primary">{display}</p>
+      <p className="text-xs text-muted-foreground font-mono">{label}</p>
+    </div>
+  );
+};
+
+const ProjectsSection = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+  const headingScale = useTransform(scrollYProgress, [0, 0.3], [0.9, 1]);
+  const headingOpacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
+
+  return (
+    <section id="projects" className="py-24 relative" ref={containerRef}>
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background to-transparent pointer-events-none" />
       <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
+        <motion.div style={{ scale: headingScale, opacity: headingOpacity }} className="mb-16">
           <p className="section-label mb-3">03 — Portfolio</p>
-          <h2 className="text-3xl md:text-4xl font-bold">
+          <h2 className="text-3xl md:text-5xl font-bold">
             Featured <span className="text-gradient">Projects</span>
           </h2>
         </motion.div>
@@ -46,10 +62,11 @@ const ProjectsSection = () => {
           {projects.map((project, i) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.2, duration: 0.6 }}
+              initial={{ opacity: 0, x: i % 2 === 0 ? -80 : 80 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+              whileHover={{ scale: 1.01 }}
               className="glass-card rounded-xl p-8 group hover:glow-border transition-all duration-500"
             >
               <div className="grid md:grid-cols-3 gap-8">
@@ -60,9 +77,7 @@ const ProjectsSection = () => {
                     </div>
                     <h3 className="text-xl font-semibold">{project.title}</h3>
                   </div>
-                  <p className="text-muted-foreground leading-relaxed mb-5">
-                    {project.description}
-                  </p>
+                  <p className="text-muted-foreground leading-relaxed mb-5">{project.description}</p>
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
                       <span
@@ -76,14 +91,7 @@ const ProjectsSection = () => {
                 </div>
                 <div className="flex flex-col justify-center gap-4">
                   {project.metrics.map((metric) => (
-                    <div key={metric.label} className="text-center">
-                      <p className="text-2xl font-bold text-primary">
-                        {metric.value}
-                      </p>
-                      <p className="text-xs text-muted-foreground font-mono">
-                        {metric.label}
-                      </p>
-                    </div>
+                    <CountUpMetric key={metric.label} value={metric.value} label={metric.label} />
                   ))}
                 </div>
               </div>

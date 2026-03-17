@@ -26,8 +26,10 @@ const Navbar = () => {
       initial={{ y: -80 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass-card border-b border-border/30" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "backdrop-blur-2xl bg-background/70 border-b border-border/30 shadow-lg shadow-background/50"
+          : "bg-transparent"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
@@ -40,9 +42,10 @@ const Navbar = () => {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-muted-foreground hover:text-primary transition-colors"
+              className="text-sm text-muted-foreground hover:text-primary transition-colors relative group"
             >
               {link.label}
+              <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
         </div>
@@ -58,7 +61,7 @@ const Navbar = () => {
         <motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
-          className="md:hidden glass-card border-t border-border/30 px-6 pb-4"
+          className="md:hidden backdrop-blur-2xl bg-background/80 border-t border-border/30 px-6 pb-4"
         >
           {navLinks.map((link) => (
             <a
