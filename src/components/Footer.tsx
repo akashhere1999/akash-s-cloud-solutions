@@ -5,12 +5,12 @@ const Footer = () => {
         <p className="text-sm text-muted-foreground">
           © {new Date().getFullYear()} Akash Shirsekar. All rights reserved.
         </p>
-        <p className="text-xs font-mono text-muted-foreground">
-          Built with passion for cloud & security
+        <p className="text-xs font-mono text-muted-foreground">Built with passion for cloud
+
         </p>
       </div>
-    </footer>
-  );
+    </footer>);
+
 };
 
 export default Footer;
