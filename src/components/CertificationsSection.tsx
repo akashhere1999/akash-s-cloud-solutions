@@ -1,7 +1,8 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ExternalLink, ShieldCheck, Calendar } from "lucide-react";
+import { ShieldCheck, Calendar, ExternalLink, ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import CertFlipCard from "@/components/CertFlipCard";
 
 const certifications = [
   {
@@ -11,6 +12,7 @@ const certifications = [
     expires: "Feb 2027",
     link: "https://learn.microsoft.com/en-us/users/akashshirsekar-2206/credentials/5824404bf829de9",
     active: true,
+    value: "Architects enterprise-grade security postures across hybrid cloud environments, ensuring compliance and zero-trust implementation.",
   },
   {
     name: "Onboarding & Operationalizing Wiz Cloud",
@@ -18,6 +20,7 @@ const certifications = [
     issued: "Nov 2025",
     link: "https://certified.training.wiz.io/1fbbaf76-08ec-4b5b-aad9-564e898e2c47#acc.oAmudh3J",
     active: true,
+    value: "Deploys cloud-native security platforms to achieve full-stack visibility and risk prioritization across multi-cloud estates.",
   },
   {
     name: "Generative AI Leader Certification",
@@ -26,6 +29,7 @@ const certifications = [
     expires: "Oct 2028",
     link: "https://www.credly.com/badges/12994470-12d7-49c2-a313-0ae737ec6ad0/linked_in_profile",
     active: true,
+    value: "Drives AI-powered transformation strategies, integrating large language models into enterprise workflows for measurable ROI.",
   },
   {
     name: "Terraform Associate (003)",
@@ -34,6 +38,7 @@ const certifications = [
     expires: "May 2027",
     link: "https://www.credly.com/badges/8bf21e7d-2be7-450a-b299-b503c687d3b9/linked_in_profile",
     active: true,
+    value: "Automates infrastructure provisioning with Infrastructure-as-Code, cutting deployment times by 60% and eliminating configuration drift.",
   },
   {
     name: "AWS Certified AI Practitioner",
@@ -42,6 +47,7 @@ const certifications = [
     expires: "May 2028",
     link: "https://www.credly.com/badges/e1c2e38e-d73c-4ccb-858e-230e8ecad9e3/linked_in_profile",
     active: true,
+    value: "Designs and deploys scalable AI/ML solutions on AWS, enabling data-driven decision making for enterprise applications.",
   },
   {
     name: "Azure Administrator Associate",
@@ -50,6 +56,7 @@ const certifications = [
     expires: "Oct 2024",
     link: "https://learn.microsoft.com/en-us/users/akashshirsekar-2206/credentials/f34abeac3ca7bcb7",
     active: false,
+    value: "Managed enterprise Azure environments at scale — identity, networking, compute, and storage for production workloads.",
   },
   {
     name: "OCI 2023 Foundations Associate",
@@ -57,6 +64,7 @@ const certifications = [
     issued: "Jul 2023",
     link: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=85861E029F6473C85B4B5B2D772251A2246B810C07A09EF91A28CC265F30EC9D",
     active: true,
+    value: "Extends multi-cloud strategy with Oracle Cloud expertise, enabling seamless database and application migration.",
   },
   {
     name: "Solutions Architect – Professional",
@@ -65,6 +73,7 @@ const certifications = [
     expires: "Feb 2026",
     link: "https://www.credly.com/badges/96a9d5fa-a37f-43fc-a6c4-ab6eb9926bea/linked_in_profile",
     active: false,
+    value: "Designed complex, highly-available distributed systems on AWS handling millions of requests with cost-optimized architectures.",
   },
   {
     name: "Azure Data Fundamentals",
@@ -72,6 +81,7 @@ const certifications = [
     issued: "Apr 2022",
     link: "https://www.credly.com/badges/30f22425-6bce-409b-b1ab-61300e4f07f9",
     active: true,
+    value: "Builds modern data platforms on Azure, enabling analytics pipelines and data governance for enterprise intelligence.",
   },
   {
     name: "Azure AI Fundamentals",
@@ -79,6 +89,7 @@ const certifications = [
     issued: "Mar 2022",
     link: "https://www.credly.com/badges/0a368690-8386-4566-88ac-e855421699c6",
     active: true,
+    value: "Applies Azure AI services — vision, NLP, and decision models — to solve real-world business challenges at scale.",
   },
   {
     name: "Azure Fundamentals",
@@ -86,6 +97,7 @@ const certifications = [
     issued: "Feb 2022",
     link: "https://www.credly.com/badges/ee437d58-13f6-490c-9d1e-82c9ae299d55",
     active: true,
+    value: "Foundation for building secure, scalable cloud solutions on Microsoft Azure for enterprise digital transformation.",
   },
   {
     name: "Security, Compliance & Identity Fundamentals",
@@ -93,6 +105,7 @@ const certifications = [
     issued: "Jan 2022",
     link: "https://www.credly.com/badges/b9132831-ede3-4c63-9536-3b26933b6f64",
     active: true,
+    value: "Implements identity-driven security and compliance frameworks to protect enterprise data across cloud boundaries.",
   },
   {
     name: "Solutions Architect – Associate",
@@ -101,86 +114,9 @@ const certifications = [
     expires: "Jan 2026",
     link: "https://www.credly.com/badges/dc8e0157-1410-48fe-bf06-a94d5263f632/linked_in_profile",
     active: false,
+    value: "Designs resilient, high-performance AWS architectures balancing cost, security, and scalability for production systems.",
   },
 ];
-
-const issuerColor: Record<string, string> = {
-  Microsoft: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-  AWS: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-  Google: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-  HashiCorp: "bg-violet-500/10 text-violet-400 border-violet-500/20",
-  Oracle: "bg-red-500/10 text-red-400 border-red-500/20",
-  Wiz: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
-};
-
-const TiltCard = ({
-  cert,
-  i,
-}: {
-  cert: (typeof certifications)[0];
-  i: number;
-}) => {
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -20;
-    setTilt({ x: y, y: x });
-  };
-
-  const handleMouseLeave = () => setTilt({ x: 0, y: 0 });
-
-  return (
-    <motion.a
-      href={cert.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      initial={{ opacity: 0, y: 30, scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ delay: i * 0.05, duration: 0.5 }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="glass-card rounded-xl p-5 group hover:border-primary/40 transition-all duration-300 flex flex-col justify-between"
-      style={{
-        transform: `perspective(800px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
-        transition: "transform 0.15s ease-out",
-      }}
-    >
-      <div>
-        <div className="flex items-start justify-between mb-3">
-          <span
-            className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${
-              issuerColor[cert.issuer] ?? "bg-secondary text-secondary-foreground border-border"
-            }`}
-          >
-            {cert.issuer}
-          </span>
-          <ExternalLink className="h-3.5 w-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-        </div>
-        <div className="flex items-start gap-2 mb-3">
-          <ShieldCheck className="h-4 w-4 text-primary mt-0.5 shrink-0" />
-          <h3 className="text-sm font-semibold text-foreground leading-tight">{cert.name}</h3>
-        </div>
-      </div>
-      <div className="flex items-center justify-between mt-2">
-        <span className="text-[11px] text-muted-foreground font-mono flex items-center gap-1">
-          <Calendar className="h-3 w-3" />
-          {cert.issued}
-        </span>
-        {!cert.active && (
-          <Badge
-            variant="outline"
-            className="text-[10px] px-1.5 py-0 border-muted-foreground/30 text-muted-foreground"
-          >
-            Expired
-          </Badge>
-        )}
-      </div>
-    </motion.a>
-  );
-};
 
 const CertificationsSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -201,14 +137,14 @@ const CertificationsSection = () => {
             Professional <span className="text-gradient">Certifications</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl leading-relaxed">
-            Industry-recognized certifications across AWS, Azure, Google Cloud, and more — validating
-            deep expertise in cloud architecture, security, and AI.
+            Industry-recognized certifications across AWS, Azure, Google Cloud, and more — hover to
+            discover how each translates to real enterprise impact.
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {certifications.map((cert, i) => (
-            <TiltCard key={cert.name} cert={cert} i={i} />
+            <CertFlipCard key={cert.name} cert={cert} index={i} />
           ))}
         </div>
       </div>
