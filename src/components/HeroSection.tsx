@@ -7,8 +7,8 @@ import { useRef } from "react";
 
 const stats = [
   { value: "4+", label: "Years Experience" },
-  { value: "50+", label: "Projects" },
-  { value: "AWS Azure", label: "Terraform, Docker, ServiceNow" },
+  { value: "50+", label: "Projects Delivered" },
+  { value: "200+", label: "Servers Migrated" },
 ];
 
 const orbitIcons = [
