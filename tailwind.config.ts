@@ -48,8 +48,6 @@ export default {
           foreground: "hsl(var(--highlight-foreground))",
         },
         warning: "hsl(var(--warning))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
