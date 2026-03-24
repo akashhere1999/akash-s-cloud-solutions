@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowDown, Briefcase, Mail, Shield, Cloud, Server, Lock } from "lucide-react";
+import { ArrowDown, Briefcase, Mail, Shield, Cloud, Server, Lock, GitBranch } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import profilePhoto from "@/assets/profile-photo.jpg";
 import heroBg from "@/assets/hero-bg.jpg";
