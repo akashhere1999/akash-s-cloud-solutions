@@ -20,7 +20,7 @@ const projects = [
     title: "Cross-Region RDS DR using AWS DMS",
     description:
       "Custom disaster recovery setup for Amazon RDS with continuous replication to secondary region, achieving near-zero RTO and reducing data loss to under 5 minutes.",
-    tags: ["RDS", "DMS", "DR", "Multi-Region"],
+    tags: ["RDS", "DMS", "DR"],
     metrics: [
       { label: "RTO", value: "Near-Zero" },
       { label: "RPO", value: "< 5 min" },
