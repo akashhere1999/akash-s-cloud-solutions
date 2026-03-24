@@ -17,7 +17,7 @@ const skills = [
   { category: "Networking & Security", items: ["Fortigate", "Transit Gateway", "VPN", "Direct Connect", "NLB/ALB"] },
   { category: "Infrastructure as Code", items: ["Terraform", "CloudFormation"] },
   { category: "Migration & DR", items: ["AWS MGN", "AWS DRS", "Azure EDR"] },
-  { category: "Security & Compliance", items: ["IAM", "Security Hub", "AWS WAF", "Firewall", "Sentinel"] },
+  { category: "Security & Compliance", items: ["IAM", "Security Hub", "AWS WAF", "Firewall", "Sentinel", "MDC"] },
   { category: "DevOps", items: ["Docker", "Kubernetes", "GitHub", "ECR"] },
 ];
 
