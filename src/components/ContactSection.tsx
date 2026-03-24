@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Mail, Phone, Linkedin, Youtube, Send, Loader2 } from "lucide-react";
+import { Mail, BookOpen, Linkedin, Youtube, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -9,7 +9,7 @@ import emailjs from "@emailjs/browser";
 
 const contactInfo = [
   { icon: Mail, label: "Email", value: "akashshirsekar19@gmail.com", href: "mailto:akashshirsekar19@gmail.com" },
-  { icon: Phone, label: "Phone", value: "+91 97024 92287", href: "tel:+919702492287" },
+  { icon: BookOpen, label: "Medium", value: "akzee1917", href: "https://medium.com/@akzee1917" },
   { icon: Linkedin, label: "LinkedIn", value: "Akash Shirsekar", href: "https://www.linkedin.com/in/akash-shirsekar" },
   { icon: Youtube, label: "YouTube", value: "Akash Shirsekar", href: "https://www.youtube.com/@akashshirsekar" },
 ];
