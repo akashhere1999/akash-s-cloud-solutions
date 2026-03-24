@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowDown, Briefcase, Mail, Shield, Cloud, Server, Lock } from "lucide-react";
+import { ArrowDown, Briefcase, Mail, Shield, Cloud, Server, Lock, GitBranch } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import profilePhoto from "@/assets/profile-photo.jpg";
 import heroBg from "@/assets/hero-bg.jpg";
@@ -13,9 +13,10 @@ const stats = [
 
 const orbitIcons = [
   { icon: Shield, delay: 0, label: "Security" },
-  { icon: Cloud, delay: 1.5, label: "Cloud" },
-  { icon: Server, delay: 3, label: "Infra" },
-  { icon: Lock, delay: 4.5, label: "IAM" },
+  { icon: Cloud, delay: 1.2, label: "Cloud" },
+  { icon: Server, delay: 2.4, label: "Infra" },
+  { icon: Lock, delay: 3.6, label: "IAM" },
+  { icon: GitBranch, delay: 4.8, label: "DevOps" },
 ];
 
 const titleWords = "Akash Shirsekar".split(" ");
