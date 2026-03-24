@@ -9,7 +9,7 @@ const projects = [
     title: "AWS Lambda-based Backup Monitoring Dashboard",
     description:
       "Automated monitoring solution validating daily S3 backups, logging missing backups to CloudWatch, and sending real-time SNS email alerts. Improved visibility and compliance across the organization.",
-    tags: ["Lambda", "S3", "CloudWatch", "SNS"],
+    tags: ["Lambda", "S3", "CloudWatch", "SNS", "EventBridge"],
     metrics: [
       { label: "Compliance", value: "99.9%" },
       { label: "Alert Latency", value: "< 30s" },
