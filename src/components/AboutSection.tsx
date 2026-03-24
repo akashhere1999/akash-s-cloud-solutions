@@ -16,9 +16,9 @@ const skills = [
   { category: "Cloud Platforms", items: ["AWS", "Azure"] },
   { category: "Networking & Security", items: ["Fortigate", "Transit Gateway", "VPN", "Direct Connect", "NLB/ALB"] },
   { category: "Infrastructure as Code", items: ["Terraform", "CloudFormation"] },
-  { category: "Migration & DR", items: ["AWS MGN", "DRS"] },
-  { category: "Monitoring", items: ["CloudWatch", "Systems Manager", "AWS Config"] },
-  { category: "Security & Compliance", items: ["IAM", "Security Hub", "AWS WAF", "Firewall"] },
+  { category: "Migration & DR", items: ["AWS MGN", "AWS DRS", "Azure EDR"] },
+  { category: "Security & Compliance", items: ["IAM", "Security Hub", "AWS WAF", "Firewall", "Sentinel"] },
+  { category: "DevOps", items: ["Docker", "Kubernetes", "GitHub", "ECR"] },
 ];
 
 const experience = [
