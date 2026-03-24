@@ -14,7 +14,7 @@ import {
 
 const skills = [
   { category: "Cloud Platforms", items: ["AWS", "Azure"] },
-  { category: "Networking & Security", items: ["VPC", "Transit Gateway", "VPN", "Direct Connect", "NLB/ALB"] },
+  { category: "Networking & Security", items: ["Fortigate", "Transit Gateway", "VPN", "Direct Connect", "NLB/ALB"] },
   { category: "Infrastructure as Code", items: ["Terraform", "CloudFormation"] },
   { category: "Migration & DR", items: ["AWS MGN", "DRS"] },
   { category: "Monitoring", items: ["CloudWatch", "Systems Manager", "AWS Config"] },
