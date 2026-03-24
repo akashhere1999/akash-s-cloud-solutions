@@ -194,7 +194,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.9, delay: 0.4 }}
-            className="lg:col-span-2 flex justify-center lg:justify-end"
+            className="lg:col-span-2 flex justify-center lg:justify-center"
           >
             <div className="relative w-72 h-72 md:w-[22rem] md:h-[22rem]">
               <div className="absolute inset-0 rounded-full border border-primary/10" />
