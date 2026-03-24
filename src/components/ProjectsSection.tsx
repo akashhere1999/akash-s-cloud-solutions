@@ -9,7 +9,7 @@ const projects = [
     title: "AWS Lambda-based Backup Monitoring Dashboard",
     description:
       "Automated monitoring solution validating daily S3 backups, logging missing backups to CloudWatch, and sending real-time SNS email alerts. Improved visibility and compliance across the organization.",
-    tags: ["Lambda", "S3", "CloudWatch", "SNS"],
+    tags: ["Lambda", "S3", "CloudWatch", "SNS", "EventBridge"],
     metrics: [
       { label: "Compliance", value: "99.9%" },
       { label: "Alert Latency", value: "< 30s" },
@@ -20,7 +20,7 @@ const projects = [
     title: "Cross-Region RDS DR using AWS DMS",
     description:
       "Custom disaster recovery setup for Amazon RDS with continuous replication to secondary region, achieving near-zero RTO and reducing data loss to under 5 minutes.",
-    tags: ["RDS", "DMS", "DR", "Multi-Region"],
+    tags: ["RDS", "DMS", "DR"],
     metrics: [
       { label: "RTO", value: "Near-Zero" },
       { label: "RPO", value: "< 5 min" },
