@@ -14,7 +14,7 @@ import {
 
 const skills = [
   { category: "Cloud Platforms", items: ["AWS", "Azure"] },
-  { category: "Networking & Security", items: ["Fortigate", "Transit Gateway", "VPN", "Direct Connect", "NLB/ALB"] },
+  { category: "Networking & Security", items: ["Fortigate", "Transit Gateway", "VPN", "Direct Connect", "Firewall"] },
   { category: "Infrastructure as Code", items: ["Terraform", "CloudFormation"] },
   { category: "Migration & DR", items: ["AWS MGN", "AWS DRS", "Azure EDR"] },
   { category: "Security & Compliance", items: ["IAM", "Security Hub", "AWS WAF", "Firewall", "Sentinel", "MDC"] },
