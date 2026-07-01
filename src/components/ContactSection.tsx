@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import emailjs from "@emailjs/browser";
 
 const contactInfo = [
-  { icon: Mail, label: "Email", value: "akashshirsekar19@gmail.com", href: "mailto:akashshirsekar19@gmail.com" },
+  { icon: Mail, label: "Email", value: "akzee1917@gmail.com", href: "mailto:akzee1917@gmail.com" },
   { icon: BookOpen, label: "Medium", value: "akzee1917", href: "https://medium.com/@akzee1917" },
   { icon: Linkedin, label: "LinkedIn", value: "Akash Shirsekar", href: "https://www.linkedin.com/in/akash-shirsekar" },
   { icon: Youtube, label: "YouTube", value: "Akash Shirsekar", href: "https://www.youtube.com/@akashshirsekar" },
