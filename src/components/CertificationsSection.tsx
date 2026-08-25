@@ -6,6 +6,15 @@ import CertFlipCard from "@/components/CertFlipCard";
 
 const certifications = [
   {
+    name: "Azure Solutions Architect Expert",
+    issuer: "Microsoft",
+    issued: "Aug 2026",
+    expires: "Aug 2027",
+    link: "https://learn.microsoft.com/api/credentials/share/en-us/AkashShirsekar-2206/E9B4C7F0B1574D02?sharingId",
+    active: true,
+    value: "Designs end-to-end Azure solutions that align business requirements with scalable, secure, and cost-optimized cloud architectures.",
+  },
+  {
     name: "Azure Security Engineer Associate",
     issuer: "Microsoft",
     issued: "Feb 2026",
