@@ -10,6 +10,15 @@ import {
   Code2,
   Users,
   Database,
+  Network,
+  Lock,
+  Bell,
+  Workflow,
+  GitBranch,
+  Cloud,
+  Globe,
+  Activity,
+  Plane,
 } from "lucide-react";
 
 const skills = [
@@ -24,25 +33,29 @@ const skills = [
 const experience = [
   {
     role: "Assistant Manager",
-    company: "Deloitte",
+    company: "Deloitte, Mumbai (On-site)",
     period: "Aug 2025 – Present",
     details: [
-      { title: "Security Architecture & Compliance", description: "Architected enterprise-grade Azure solutions tailored for application teams, ensuring strict adherence to ISO 27001 and NIST frameworks to achieve \"Audit-Ready\" status prior to production launch.", icon: Shield },
-      { title: "Automated Incident Response", description: "Engineered a seamless security orchestration pipeline by deploying Microsoft Defender for Cloud (MDC) and Azure Sentinel, utilizing Logic Apps to automate ticket creation in ServiceNow for real-time alert remediation.", icon: Server },
-      { title: "SOC Optimization", description: "Developed custom KQL analytics rules and interactive dashboards within Sentinel to enhance visibility and streamline threat detection for complex cloud environments.", icon: Code2 },
-      { title: "Governance & Gap Analysis", description: "Conducted comprehensive security audits on existing applications and platforms, identifying architectural vulnerabilities and redesigning infrastructure to eliminate compliance gaps and improve overall system reliability.", icon: Shield },
+      { title: "Network Security Architecture", description: "Design and validate secure hybrid cloud networking across AWS and Azure for enterprise clients, applying strict segmentation and VPC/VNet peering to minimize attack surface.", icon: Network },
+      { title: "Infrastructure as Code", description: "Develop standardized, reusable Terraform modules for core infrastructure (VPCs, Transit Gateways, Route53), enabling consistent, repeatable deployments across a global cloud environment.", icon: Code2 },
+      { title: "Threat Detection & Monitoring", description: "Deploy Azure Sentinel and Microsoft Defender to monitor network traffic, configuring automated alerts for anomalous ingress/egress activity and potential port scans to strengthen SOC visibility.", icon: Bell },
+      { title: "Security Automation", description: "Built an automated incident response pipeline integrating Microsoft Sentinel with ServiceNow via Azure Logic Apps, enabling real-time ticket generation for security alerts and reducing manual triage.", icon: Workflow },
+      { title: "IaC Security Scanning", description: "Conducted Checkov static analysis on Terraform code for Azure infrastructure and authored custom Checkov policies per business requirements to catch misconfigurations pre-deployment.", icon: Shield },
+      { title: "CI/CD Security", description: "Implemented GitHub Actions with Gitleaks for secrets detection and created CI/CD pipeline rules in GitHub to enforce security gates before merge and deployment.", icon: GitBranch },
     ],
   },
   {
-    role: "Sr Cloud Engineer",
-    company: "Sapphire Infotech Ventures",
+    role: "Senior Cloud Engineer",
+    company: "Sapphire Infotech Ventures, Mumbai (Hybrid)",
     period: "Oct 2021 – Jul 2025",
     details: [
-      { title: "Disaster Recovery Leadership", description: "Spearheaded multiple production-level failover and failback operations, consistently meeting aggressive RPO and RTO targets to ensure business continuity for mission-critical workloads.", icon: Server },
-      { title: "Large-Scale Migration", description: "Executed complex \"lift-and-shift\" migrations from on-premises data centers to AWS using the AWS Application Migration Service (MGN), minimizing downtime and technical debt.", icon: Code2 },
-      { title: "Infrastructure as Code (IaC)", description: "Automated the deployment of global cloud infrastructure from the ground up using Terraform, integrating CI/CD workflows via GitHub for version-controlled, repeatable environments.", icon: Code2 },
-      { title: "Identity & Access Management", description: "Enhanced enterprise security by implementing Okta SSO integration across a multi-account AWS Organization, streamlining user access and centralized identity governance.", icon: Users },
-      { title: "Database Resiliency", description: "Orchestrated cross-region and cross-account disaster recovery strategies for Amazon RDS using AWS Database Migration Service (DMS) to ensure data integrity and high availability.", icon: Database },
+      { title: "Multi-Account AWS Governance", description: "Deployed and managed multi-account AWS environments using AWS Organizations and Control Tower, enforcing governance via SCPs and Permission Boundaries; architected network security behind AWS Network Firewall with centralized inspection.", icon: Cloud },
+      { title: "IAM & Identity Governance", description: "Implemented Okta-based Single Sign-On across 30+ AWS accounts, centralizing user lifecycle management and streamlining IAM permission controls enterprise-wide.", icon: Users },
+      { title: "Hybrid Enterprise Networking", description: "Engineered secure, scalable hybrid connectivity using AWS Transit Gateway, Direct Connect, Fortinet firewalls, and OpenVPN for on-premises-to-AWS integration.", icon: Globe },
+      { title: "Automation & Tooling", description: "Built Python (Boto3) automation for infrastructure provisioning and patching; automated AMI builds and patch pipelines with AWS Patch Manager.", icon: Server },
+      { title: "Disaster Recovery", description: "Designed disaster recovery solutions with AWS Elastic Disaster Recovery, running biannual DR drills to validate RTO/RPO targets.", icon: Database },
+      { title: "Performance Monitoring", description: "Built cross-cloud (AWS/Azure) Grafana dashboards with automated alerting for system performance and reliability.", icon: Activity },
+      { title: "Cloud Migration", description: "Led migration of on-premises VMware workloads (SAP and non-SAP) to AWS, including AMI creation and HA re-architecture with minimal RTO/RPO.", icon: Plane },
     ],
   },
 ];
