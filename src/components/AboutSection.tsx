@@ -22,12 +22,14 @@ import {
 } from "lucide-react";
 
 const skills = [
-  { category: "Cloud Platforms", items: ["AWS", "Azure"] },
-  { category: "Networking & Security", items: ["Fortigate", "Transit Gateway", "VPN", "Direct Connect", "Firewall"] },
-  { category: "Infrastructure as Code", items: ["Terraform", "CloudFormation"] },
-  { category: "Migration & DR", items: ["AWS MGN", "AWS DRS", "Azure EDR"] },
-  { category: "Security & Compliance", items: ["IAM", "Security Hub", "AWS WAF", "Firewall", "Sentinel", "MDC"] },
-  { category: "DevOps", items: ["Docker", "Kubernetes", "GitHub", "ECR"] },
+  { category: "Cloud Governance & Identity", items: ["AWS Organizations", "Control Tower", "IAM (SCPs, Roles, Boundaries)", "AWS Config", "Okta SSO"] },
+  { category: "Networking", items: ["VPC", "Transit Gateway", "Direct Connect", "VPC/VNet Peering", "Route 53", "Network Firewall"] },
+  { category: "IaC & Automation", items: ["Terraform", "CloudFormation", "Ansible", "Python (Boto3)", "AWS Systems Manager"] },
+  { category: "DevSecOps & CI/CD", items: ["GitHub Actions", "Azure DevOps", "Jenkins", "Checkov", "Gitleaks"] },
+  { category: "Security & Compliance", items: ["Zero Trust", "Azure Sentinel", "Microsoft Defender", "NIST", "ISO"] },
+  { category: "Observability", items: ["CloudWatch", "CloudTrail", "Prometheus", "Grafana", "ELK Stack"] },
+  { category: "Containers", items: ["Kubernetes (K8s)", "Docker"] },
+  { category: "Architecture & DR", items: ["High Availability", "AWS Elastic Disaster Recovery", "RTO/RPO Planning"] },
 ];
 
 const experience = [
