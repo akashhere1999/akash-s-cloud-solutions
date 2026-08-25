@@ -61,10 +61,10 @@ const certifications = [
   {
     name: "Azure Administrator Associate",
     issuer: "Microsoft",
-    issued: "Oct 2023",
-    expires: "Oct 2024",
-    link: "https://learn.microsoft.com/en-us/users/akashshirsekar-2206/credentials/f34abeac3ca7bcb7",
-    active: false,
+    issued: "Apr 2026",
+    expires: "Apr 2027",
+    link: "https://learn.microsoft.com/api/credentials/share/en-us/AkashShirsekar-2206/F34ABEAC3CA7BCB7?sharingId",
+    active: true,
     value: "Managed enterprise Azure environments at scale — identity, networking, compute, and storage for production workloads.",
   },
   {
